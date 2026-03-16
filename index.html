@@ -1,32 +1,224 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>ARK Dino Market</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f4f8;
+margin:0;
+padding:40px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+h1{
+margin-bottom:20px;
+}
+
+.topbar{
+margin-bottom:20px;
+}
+
+button{
+padding:10px 15px;
+background:#2d7df6;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.searchbox{
+background:white;
+padding:15px;
+border-radius:8px;
+margin-bottom:30px;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+.searchbox input{
+padding:8px;
+margin-right:10px;
+}
+
+.market{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+gap:20px;
+}
+
+.dino{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 6px 15px rgba(0,0,0,0.08);
+transition:0.2s;
+}
+
+.dino:hover{
+transform:translateY(-5px);
+box-shadow:0 12px 24px rgba(0,0,0,0.12);
+}
+
+.dino img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:6px;
+margin-bottom:10px;
+}
+
+.color{
+width:18px;
+height:18px;
+display:inline-block;
+border-radius:4px;
+margin-right:5px;
+border:1px solid #ddd;
+}
+
+/* 去掉链接蓝色下划线 */
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+</style>
+
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>ARK Dino Market</h1>
 
-<h2>Available Dinos</h2>
+<div class="topbar">
 
-<div>
+<a href="upload.html">
+<button>Sell Dino</button>
+</a >
+
+</div>
+
+<div class="searchbox">
+
+<label>名称:
+<input type="text" id="nameSearch" placeholder="如: Rex">
+</label>
+
+<label>最小攻击:
+<input type="number" id="meleeSearch">
+</label>
+
+<label>最高价格:
+<input type="number" id="priceSearch">
+</label>
+
+<button onclick="filterDinos()">搜索</button>
+
+</div>
+
+<div class="market" id="dinoList">
+
+
+<a href="dino.html">
+<div class="dino" data-name="giga" data-melee="1200" data-price="5">
+
+<img src="https://static.wikia.nocookie.net/arksurvivalevolved_gamepedia/images/4/41/Giganotosaurus.png">
+
 <h3>Giga</h3>
-<p>Level: 450</p >
+
 <p>Melee: 1200</p >
+
+<p>Colors:
+<span class="color" style="background:red"></span>
+<span class="color" style="background:black"></span>
+</p >
+
 <p>Price: 5$</p >
-<p>Seller Discord: yan#1234</p >
+
 </div>
+</a >
 
-<hr>
 
-<div>
+<div class="dino" data-name="rex" data-melee="950" data-price="3">
+
+<img src="https://static.wikia.nocookie.net/arksurvivalevolved_gamepedia/images/5/5e/Rex.png">
+
 <h3>Rex</h3>
-<p>Level: 380</p >
+
 <p>Melee: 950</p >
+
+<p>Colors:
+<span class="color" style="background:blue"></span>
+</p >
+
 <p>Price: 3$</p >
-<p>Seller Discord: mike#2222</p >
+
 </div>
+
+
+<div class="dino" data-name="carcha" data-melee="1100" data-price="4">
+
+<img src="https://static.wikia.nocookie.net/arksurvivalevolved_gamepedia/images/3/3b/Carcharodontosaurus.png">
+
+<h3>Carcha</h3>
+
+<p>Melee: 1100</p >
+
+<p>Colors:
+<span class="color" style="background:black"></span>
+<span class="color" style="background:red"></span>
+</p >
+
+<p>Price: 4$</p >
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function filterDinos(){
+
+let name=document.getElementById("nameSearch").value.toLowerCase()
+let melee=document.getElementById("meleeSearch").value
+let price=document.getElementById("priceSearch").value
+
+let dinos=document.querySelectorAll(".dino")
+
+dinos.forEach(function(dino){
+
+let dinoName=dino.dataset.name
+let dinoMelee=dino.dataset.melee
+let dinoPrice=dino.dataset.price
+
+let show=true
+
+if(name && !dinoName.includes(name)) show=false
+if(melee && dinoMelee<melee) show=false
+if(price && dinoPrice>price) show=false
+
+dino.style.display=show ? "block":"none"
+
+})
+
+}
+
+</script>
 
 </body>
+
 </html>

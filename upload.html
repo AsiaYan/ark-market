@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Sell Dino</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+padding:40px;
+}
+
+.form{
+background:white;
+padding:20px;
+width:400px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+input{
+width:100%;
+padding:8px;
+margin-bottom:10px;
+}
+
+button{
+padding:10px;
+background:#2d7df6;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.preview{
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Sell Your Dino</h1>
+
+<div class="form">
+
+<input type="text" id="name" placeholder="Dino name">
+
+<input type="number" id="melee" placeholder="Melee">
+
+<input type="number" id="price" placeholder="Price">
+
+<input type="text" id="discord" placeholder="Discord">
+
+<input type="file" id="image">
+
+<button onclick="previewDino()">Publish</button>
+
+</div>
+
+<div class="preview" id="preview"></div>
+
+<script>
+
+function previewDino(){
+
+let name=document.getElementById("name").value
+let melee=document.getElementById("melee").value
+let price=document.getElementById("price").value
+let discord=document.getElementById("discord").value
+let file=document.getElementById("image").files[0]
+
+let reader=new FileReader()
+
+reader.onload=function(e){
+
+document.getElementById("preview").innerHTML=`
+
+<h2>Preview</h2>
+
+<div style="background:white;padding:15px;width:250px;border-radius:8px">
+
+< img src="${e.target.result}" width="100%">
+
+<h3>${name}</h3>
+
+<p>Melee: ${melee}</p >
+
+<p>Price: ${price}$</p >
+
+<p>Discord: ${discord}</p >
+
+</div>
+
+`
+
+}
+
+reader.readAsDataURL(file)
+
+}
+
+</script>
+
+</body>
+</html>

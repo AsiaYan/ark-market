@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dino</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f4f8;
+padding:40px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+}
+
+.card{
+background:white;
+border-radius:10px;
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+padding:20px;
+}
+
+img{
+width:100%;
+border-radius:8px;
+margin-bottom:15px;
+}
+
+button{
+padding:10px 16px;
+background:#5865F2;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<img src="https://static.wikia.nocookie.net/arksurvivalevolved_gamepedia/images/4/41/Giganotosaurus.png">
+
+<h2>Giga</h2>
+
+<p>Melee: 1200</p >
+
+<p>Colors: Red Black</p >
+
+<p>Price: 5$</p >
+
+<button onclick="contact()">Contact Seller</button>
+
+</div>
+
+</div>
+
+<script>
+
+function contact(){
+
+navigator.clipboard.writeText("yan#1234")
+
+alert("Discord ID copied!")
+
+}
+
+</script>
+
+</body>
+
+</html>
